@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,7 +26,7 @@ class Project
 
     public function __construct()
     {
-        $this->developers = new Collection();
+        $this->developers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,5 +76,10 @@ class Project
         $this->developers = $developers;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

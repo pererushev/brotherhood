@@ -35,7 +35,7 @@ class Developer
 
     public function __construct()
     {
-        $this->projects = new Collection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,5 +117,10 @@ class Developer
         $this->projects = $projects;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

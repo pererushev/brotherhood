@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Developer index{% endblock %}
+
+{% block body %}
+    <h1>Developer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Position</th>
+                <th>Project</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for developer in developers %}
+            <tr>
+                <td>{{ developer.id }}</td>
+                <td>{{ developer.name }}</td>
+                <td>{{ developer.email }}</td>
+                <td>{{ developer.phone }}</td>
+                <td>{{ developer.position|trans }}</td>
+                <td>
+                    {% for project in developer.projects %}
+                        {{ project }}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_developer_show', {'id': developer.id}) }}">show</a>
+                    <a href="{{ path('app_developer_edit', {'id': developer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_developer_new') }}">Create new</a>
+{% endblock %}
