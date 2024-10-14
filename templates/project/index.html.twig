@@ -1,34 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index{% endblock %}
+{% block title %}Проекты{% endblock %}
 
 {% block body %}
-    <h1>Project index</h1>
+    <h1>Проекты</h1>
+
+    <a href="{{ path('app_project_new') }}">Создать новый</a> <br/><br/>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Customer</th>
-                <th>Developers</th>
-                <th>actions</th>
+                <th>Название</th>
+                <th>Заказчик</th>
+                <th>Исполнители</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
         {% for project in projects %}
             <tr>
                 <td>{{ project.id }}</td>
-                <td>{{ project.name }}</td>
+                <td>{{ project.name|capitalize }}</td>
                 <td>{{ project.customer }}</td>
                 <td>
                     {% for developer in project.developers %}
-                        {{ developer }}
+                        {{ developer }} <br/>
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{{ path('app_project_show', {'id': project.id}) }}">show</a>
-                    <a href="{{ path('app_project_edit', {'id': project.id}) }}">edit</a>
+                    <a href="{{ path('app_project_show', {'id': project.id}) }}">Показать</a>
+                    <a href="{{ path('app_project_edit', {'id': project.id}) }}">Изменить</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_project_new') }}">Create new</a>
+    
 {% endblock %}

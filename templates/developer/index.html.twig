@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Developer index{% endblock %}
+{% block title %}Исполнители{% endblock %}
 
 {% block body %}
-    <h1>Developer index</h1>
+    <h1>Исполнители</h1>
+
+    <a href="{{ path('app_developer_new') }}">Создать нового</a>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>№№</th>
+                <th>Имя</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>Position</th>
-                <th>Project</th>
-                <th>actions</th>
+                <th>Телефон</th>
+                <th>Должность</th>
+                <th>Проект</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,12 +29,12 @@
                 <td>{{ developer.position|trans }}</td>
                 <td>
                     {% for project in developer.projects %}
-                        {{ project }}
+                        {{ project.id }}  {{ project.name|capitalize }} <br>
                     {% endfor %}
                 </td>
                 <td>
-                    <a href="{{ path('app_developer_show', {'id': developer.id}) }}">show</a>
-                    <a href="{{ path('app_developer_edit', {'id': developer.id}) }}">edit</a>
+                    <a href="{{ path('app_developer_show', {'id': developer.id}) }}">Показать</a>
+                    <a href="{{ path('app_developer_edit', {'id': developer.id}) }}">Редактировать</a>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +45,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_developer_new') }}">Create new</a>
+    
 {% endblock %}

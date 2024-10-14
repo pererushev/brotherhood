@@ -46,6 +46,7 @@ final class DeveloperController extends AbstractController
     #[Route('/{id}', name: 'app_developer_show', methods: ['GET'])]
     public function show(Developer $developer): Response
     {
+        //dd($developer->getProjects()->getValues());
         return $this->render('developer/show.html.twig', [
             'developer' => $developer,
         ]);

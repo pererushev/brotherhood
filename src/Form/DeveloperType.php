@@ -16,15 +16,17 @@ class DeveloperType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('email')
-            ->add('phone')
-            ->add('position', EnumType::class, ['class' => PositionEnum::class])
+            ->add('name', null, ['label' => 'Имя'])
+            ->add('email', null, ['label' => 'Email'])
+            ->add('phone', null, ['label' => 'Телефон'])
+            ->add('position', EnumType::class, ['class' => PositionEnum::class, 'label' => 'Должность'])
             ->add('projects', EntityType::class, [
                 'class' => Project::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'required' => false
+                'expanded' => true,
+                'required' => false,
+                'label' => 'Проект'
             ])
         ;
     }
